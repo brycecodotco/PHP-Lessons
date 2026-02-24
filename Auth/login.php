@@ -1,7 +1,7 @@
 <?php
 session_start();
 $session_id = session_id();
-if (isset($_SESSION["username"])) {
+if (isset($_SESSION['username'])) {
     header("Location: welcome.php");
     exit();
 }
@@ -14,8 +14,8 @@ $users = [
 
 if ($_server["REQUEST_METHOD"] == "POST") {
 
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
     //Check if username exists and password matches
     if (isset($_users["username"]) && $users[$username] === $password) {
