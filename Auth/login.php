@@ -18,7 +18,7 @@ if ($_server["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     //Check if username exists and password matches
-    if (isset($_users["username"]) && $users[$username] === $password) {
+    if (isset($users[$username]) && $users[$username] === $password) {
 
         $_SESSION['username'] = $username;
 
@@ -26,6 +26,8 @@ if ($_server["REQUEST_METHOD"] == "POST") {
         exit();
 
 
+    } else {
+        echo "Invalid username or password.";
     }
 }
 ?>
