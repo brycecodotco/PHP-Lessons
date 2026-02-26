@@ -21,8 +21,8 @@ if ($editId){
     $result_edit = mysqli_query($conn, 
     "SELECT * FROM patient WHERE patientID='$editId'");
     $row_edit = mysqli_fetch_assoc($result_edit);
-    $PatientName = $row_edit['PatientName'];
-    $PatientAddress = $row_edit['PatientAddress'];
+    $PatientName = $row_edit['patientName'];
+    $PatientAddress = $row_edit['patientAddress'];
     $ContactNumber = $row_edit['ContactNumber'];
 }
 
@@ -99,13 +99,13 @@ $result = mysqli_query($conn, "SELECT * FROM patient");
   if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
       echo "<tr>";
-      echo "<td>".$row['PatientId']."</td>";
-      echo "<td>".$row['PatientName']."</td>";
-      echo "<td>".$row['PatientAddress']."</td>";
+      echo "<td>".$row['patientID']."</td>";
+      echo "<td>".$row['patientName']."</td>";
+      echo "<td>".$row['patientAddress']."</td>";
       echo "<td>".$row['ContactNumber']."</td>";
       echo "<td>
-          <a href='?edit=".$row['PatientId']."'>Edit</a> | 
-          <a href='?delete=".$row['PatientId']."' onclick='return confirm(\"Are you sure?\")'>Delete</a>
+          <a href='?edit=".$row['patientID']."'>Edit</a> | 
+          <a href='?delete=".$row['patientID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a>
          </td>";
       echo "</tr>";
     }
