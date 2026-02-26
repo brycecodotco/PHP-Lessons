@@ -16,7 +16,7 @@ if(isset($_POST['upload'])) {
 
     mysqli_query($conn, $sql);
 
-    echo "File uploaded successfully!";
+    echo "<div class='alert alert-success'>File uploaded successfully!</div>";
 }
 
 ?>
@@ -24,14 +24,35 @@ if(isset($_POST['upload'])) {
 <!DOCTYPE html>
 <html>
 <head>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
     <title>Upload PDF or Image</title>
 </head>
 <body>
-    <h2>Upload PDF or picture</h2>
-
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="file"  required>
-        <br><br>
-        <button type="submit" name="upload">Upload</button>
+    
+    <div class="container py-5">
+        <div class = "row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                             <div class = "text-center">
+                                 <i class="bi bi-rocket-takeoff-fill"></i><h2>Upload PDF or picture</h2>
+                            </div>
+                        <br>
+                        <div class="input-group mb-3">
+                        <form method="post" enctype="multipart/form-data">
+                        <input type="file" class="form-control" name="file" required>
+                        <br>
+                        <div class = "d-flex gap-2 ">
+                        <button type="submit" class="btn btn-primary w-50" name="upload">Upload</button>
+                        <button type="button" class="btn btn-secondary w-50" onclick="window.location.href='view.php'">View Uploads</button>
+                        <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

@@ -19,7 +19,7 @@ while($row = mysqli_fetch_assoc($result)) {
         echo '<img src="data:' . $row['filetype'] . ';base64,'
         .base64_encode($row['filedata']) . '" width="300">';
     }
-        echo "<hr>";
-    }
+    echo "<hr>";
+}
 
 ?>
