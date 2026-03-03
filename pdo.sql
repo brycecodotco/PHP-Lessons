@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2026 at 07:55 AM
+-- Generation Time: Mar 03, 2026 at 08:05 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,6 +42,26 @@ INSERT INTO `orders` (`orders_id`, `user_id`, `product`, `amount`) VALUES
 (4, 4, 'chup', 123123123),
 (5, 5, 'asd', 123);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `users_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`users_id`, `name`, `email`) VALUES
+(4, 'a', 'a@a'),
+(5, 'asd', 'sad@asd');
+
 --
 -- Indexes for dumped tables
 --
@@ -54,6 +74,12 @@ ALTER TABLE `orders`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`users_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -62,6 +88,12 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `orders`
   MODIFY `orders_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

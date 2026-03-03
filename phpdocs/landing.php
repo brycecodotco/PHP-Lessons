@@ -56,7 +56,7 @@ if (isset($_GET['edit'])) {
       <!-- USER TABLE -->
       <div class="container my-5"></div>
         <div class="row">
-          <div class="col">~
+          <div class="col">
             <h3>User & Order List</h3>
 
             <table border="1" cellpadding="10">
