@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$dbname = "pdo";
+$dbname = "restaurant";
 $username = "root";
 $password = "";
 
