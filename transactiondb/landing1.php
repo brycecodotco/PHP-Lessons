@@ -1,12 +1,13 @@
- <?php
-    require 'insert.php';
-    require 'update.php';
-    require 'delete.php';
-    require 'select.php';
+<?php
+require 'insert.php';
+require 'update.php';
+require 'delete.php';
+require 'select.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +15,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+
 <body class="bg-light">
     <div class="container mb-5">
+
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" type = "button" data-bs-toggle="tab" data-bs-target="#main">Main</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" type = "button" data-bs-toggle="tab" data-bs-target="#edit">Edit</a>
+            </li>
+        </ul>
         <!-- Customer Card -->
         <div class="row mb-4 mt-5" id="customers">
             <div class="col-12">
@@ -47,7 +58,7 @@
         </div>
 
 
-<!--Add Menu items card-->
+        <!--Add Menu items card-->
         <div class="row mb-4" id="menu">
             <div class="col-12">
                 <div class="card shadow">
@@ -86,14 +97,14 @@
                     <div class="card-header bg-primary">
                         <h4 class=" text-white mb-0">Place New Order</h4>
                     </div>
-                    
+
                     <div class="card-body">
                         <form method="POST" action="" class="row g-3">
                             <div class="col-md-5">
                                 <label class="form-label fw-bold">Customer</label>
                                 <select class="form-select" name="customer_id" required>
                                     <option value=""></option>
-                                    <?php foreach($customers as $customer): ?>
+                                    <?php foreach ($customers as $customer): ?>
                                         <option value="<?= $customer['customer_id'] ?>">
                                             <?= $customer['first_name'] . ' ' . $customer['last_name'] . ' - ' . $customer['phone_number'] ?>
                                         </option>
@@ -104,8 +115,8 @@
                             <div class="col-md-5">
                                 <label class="form-label fw-bold">Menu Item</label>
                                 <select class="form-select" name="item_id" required>
-                                    <option value="">  </option>
-                                    <?php foreach($menuItems as $item): ?>
+                                    <option value=""> </option>
+                                    <?php foreach ($menuItems as $item): ?>
                                         <option value="<?= $item['item_id'] ?>" data-price="<?= $item['price'] ?>">
                                             <?= $item['dish_name'] . ' - $' . $item['price'] . ' (' . $item['category'] . ')' ?>
                                         </option>
@@ -141,15 +152,21 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Phone</th>
-                                        
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($customers as $customer): ?>
-                                    <tr>
-                                        <td><?= $customer['first_name'] . ' ' . $customer['last_name'] ?></td>
-                                        <td><?= $customer['phone_number'] ?></td>
-                                    </tr>
+                                    <?php foreach ($customers as $customer): ?>
+                                        <tr>
+                                            <td><?= $customer['first_name'] . ' ' . $customer['last_name'] ?></td>
+                                            <td><?= $customer['phone_number'] ?></td>
+                                            <td>
+                                                <a href="?edit=<?= $customer['customer_id'] ?>"
+                                                    class="btn btn-sm btn-warning">Edit</a>
+                                                <a href="?delete_customer=<?= $customer['customer_id'] ?>"
+                                                    class="btn btn-sm btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
@@ -170,15 +187,22 @@
                                         <th>Dish</th>
                                         <th>Price</th>
                                         <th>Category</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($menuItems as $item): ?>
-                                    <tr>
-                                        <td><?= $item['dish_name'] ?></td>
-                                        <td>$<?= $item['price'] ?></td>
-                                        <td><?= $item['category'] ?></td>
-                                    </tr>
+                                    <?php foreach ($menuItems as $item): ?>
+                                        <tr>
+                                            <td><?= $item['dish_name'] ?></td>
+                                            <td>$<?= $item['price'] ?></td>
+                                            <td><?= $item['category'] ?></td>
+                                            <td>
+                                                <a href="?edit=<?= $item['item_id'] ?>"
+                                                    class="btn btn-sm btn-warning">Edit</a>
+                                                <a href="?delete_item=<?= $item['item_id'] ?>"
+                                                    class="btn btn-sm btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
@@ -205,18 +229,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($orders as $order): ?>
-                                    <tr>
-                                        <td><?= $order['order_id'] ?></td>
-                                        <td><?= $order['customer_name'] ?></td>
-                                        <td><?= $order['dish_name'] ?></td>
-                                        <td>₱<?= $order['total_price'] ?></td>
-                                        <td><?= $order['date'] ?></td>
-                                        <td>
-                                            <a href="?edit=<?= $order['order_id'] ?>" class="btn btn-sm btn-warning">Edit</a>
-                                            <a href="?delete=<?= $order['order_id'] ?>" class="btn btn-sm btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
+                                    <?php foreach ($orders as $order): ?>
+                                        <tr>
+                                            <td><?= $order['order_id'] ?></td>
+                                            <td><?= $order['customer_name'] ?></td>
+                                            <td><?= $order['dish_name'] ?></td>
+                                            <td>₱<?= $order['total_price'] ?></td>
+                                            <td><?= $order['order_date'] ?></td>
+                                            <td>
+                                                <a href="?edit=<?= $order['order_id'] ?>"
+                                                    class="btn btn-sm btn-warning">Edit</a>
+                                                <a href="?delete_orders=<?= $order['order_id'] ?>"
+                                                    class="btn btn-sm btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
@@ -226,6 +252,25 @@
             </div>
         </div>
     </div>
-       
+
 </body>
+<style>
+    .card {
+        margin-bottom: 20px;
+    }
+    .nav-link {
+        cursor: pointer;
+
+    }
+    .nav-link.active {
+        font-weight: bold;
+        color: #0d6efd;
+    }
+    .nav{
+        margin-top: 20px;
+    }
+    .nav-item {
+        margin-right: 15px;
+    }
+</style>
 </html>
