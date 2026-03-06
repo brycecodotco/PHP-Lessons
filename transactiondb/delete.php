@@ -2,7 +2,7 @@
 require 'config.php';
 
 if(isset($_GET['delete_orders'])){
-    $order_id = $_GET['delete'];
+    $order_id = $_GET['delete_orders'];
     $stmt = $pdo->prepare("DELETE FROM orders WHERE order_id = ?");
     $stmt->execute([$order_id]);
 
