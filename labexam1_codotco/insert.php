@@ -17,7 +17,7 @@ if(isset($_POST['add_consultation'])) {
     $patient_id = $_POST['patient_id'];  
     $doctorname = $_POST['doctor_name'];          
     $diagnosis = $_POST['diagnosis'];
-    $treatment = $_POST['treatment']
+    $treatment = $_POST['treatment'];
 
     $stmt = $pdo->prepare("INSERT INTO consultations(patient_id, doctor_name, consultation_date, diagnosis, treatment) VALUES (?, ?, NOW(), ?, ?)");
     $stmt->execute([$patient_id, $doctorname, $diagnosis, $treatment]);
