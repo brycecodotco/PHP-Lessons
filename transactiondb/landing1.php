@@ -141,7 +141,7 @@ if (isset($_GET["edit_order"])) {
         <div class="row mb-4" id="order">
             <div class="col-12">
                 <div class="card shadow <?= $editorder ? 'border-warning' : '' ?>">
-                    <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+                    <div class="card-header bg-warning d-flex justify-content-between align-items-center">
                         <h4 class="text-white mb-0"><?= $editorder ? 'Update Order' : 'Place New Order' ?></h4>
                         <?php if ($editorder): ?>
                             <a href="?" class="btn btn-sm btn-light">Cancel Edit</a>
@@ -172,7 +172,7 @@ if (isset($_GET["edit_order"])) {
                                         <option value="<?= $item['item_id'] ?>" 
                                             data-price="<?= $item['price'] ?>"
                                             <?= ($editorder && $editorder['item_id'] == $item['item_id']) ? 'selected' : '' ?>>
-                                            <?= $item['dish_name'] . ' - $' . $item['price'] . ' (' . $item['category'] . ')' ?>
+                                            <?= $item['dish_name'] . ' - ₱' . $item['price'] . ' (' . $item['category'] . ')' ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
@@ -251,7 +251,7 @@ if (isset($_GET["edit_order"])) {
                                     <?php foreach ($menuItems as $item): ?>
                                         <tr class="<?= ($editmenuitem && $editmenuitem['item_id'] == $item['item_id']) ? 'table-warning' : '' ?>">
                                             <td><?= $item['dish_name'] ?></td>
-                                            <td>$<?= $item['price'] ?></td>
+                                            <td>₱<?= $item['price'] ?></td>
                                             <td><?= $item['category'] ?></td>
                                             <td>
                                                 <a href="?edit_menuitem=<?= $item['item_id'] ?>"
@@ -292,7 +292,7 @@ if (isset($_GET["edit_order"])) {
                                             <td><?= $order['order_id'] ?></td>
                                             <td><?= $order['customer_name'] ?></td>
                                             <td><?= $order['dish_name'] ?></td>
-                                            <td>$<?= $order['total_price'] ?></td>
+                                            <td>₱<?= $order['total_price'] ?></td>
                                             <td><?= $order['order_date'] ?></td>
                                             <td>
                                                 <a href="?edit_order=<?= $order['order_id'] ?>"
